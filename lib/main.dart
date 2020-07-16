@@ -1,5 +1,7 @@
+import 'package:becho/signup.dart';
 import 'package:flutter/material.dart';
-import 'package:becho/HomePage.dart';
+import 'package:becho/login.dart';
+import 'HomePage.dart';
 
 void main() {
   runApp(App());
@@ -10,7 +12,11 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: Login(),
+      routes: <String, WidgetBuilder>{
+        '/signup': (BuildContext context) => SignupPage(),
+        '/homepage': (BuildContext context) => HomePage(),
+      },
       theme: ThemeData(
         fontFamily: 'poppins',
         scaffoldBackgroundColor: Colors.white,
