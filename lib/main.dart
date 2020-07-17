@@ -1,3 +1,4 @@
+import 'package:becho/Cart.dart';
 import 'package:becho/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:becho/login.dart';
@@ -16,6 +17,7 @@ class App extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/signup': (BuildContext context) => SignupPage(),
         '/homepage': (BuildContext context) => HomePage(),
+        '/cartpage': (BuildContext context) => CartPage(),
       },
       theme: ThemeData(
         fontFamily: 'poppins',

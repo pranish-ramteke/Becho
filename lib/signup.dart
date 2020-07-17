@@ -55,6 +55,17 @@ class _SignupPageState extends State<SignupPage> {
                   SizedBox(height: 10.0),
                   TextField(
                     decoration: InputDecoration(
+                        labelText: 'Phone Number',
+                        labelStyle: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xFFff6f00)))),
+                  ),
+                  SizedBox(height: 10.0),
+                  TextField(
+                    decoration: InputDecoration(
                         labelText: 'Email',
                         labelStyle: TextStyle(
                             fontFamily: 'Montserrat',

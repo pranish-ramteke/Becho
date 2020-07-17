@@ -1,5 +1,6 @@
 import 'package:becho/Module/products.dart';
 import 'package:becho/Widgets/Categoryitem.dart';
+import 'package:becho/drawerScreen.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'Module/ProductPage.dart';
 
+//Class HomePage
 
 class HomePage extends StatefulWidget {
   @override
@@ -25,6 +27,8 @@ class _HomePageState extends State<HomePage> {
     "Assets/banner7.jpg",
     "Assets/banner8.jpg",
   ];
+
+  //Products Import
 
   List<Product> products = [
     Product(
@@ -101,6 +105,15 @@ class _HomePageState extends State<HomePage> {
         productName: "T-Shirt"),
   ];
 
+  //Drawer Animation Variables
+
+  double xOffset = 0;
+  double yOffset = 0;
+  double zOffset = 0;
+  double scaleFactor = 1;
+
+  bool isDrawerOpen = false;
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -113,6 +126,7 @@ class _HomePageState extends State<HomePage> {
       )
     );
     return Scaffold(
+
       appBar: AppBar(
         centerTitle: true,
         title: Text('Becho', style: TextStyle(color: Colors.black87)),
@@ -122,229 +136,293 @@ class _HomePageState extends State<HomePage> {
         actionsIconTheme: IconThemeData(
           color: Colors.black
         ),
+
         iconTheme: IconThemeData(
           color: Colors.black87
         ),
-        leading: IconButton(
-          onPressed: () {},
+
+        //drawer button
+
+        leading: isDrawerOpen ?
+        IconButton(
+          icon: Icon(EvaIcons.arrowBack),
+          onPressed: () {
+            setState(() {
+              xOffset=0;
+              yOffset=0;
+              zOffset=0;
+              scaleFactor=1;
+              isDrawerOpen=false;
+            });
+          },
+        ) :
+
+        IconButton(
+          onPressed: () {
+            setState(() {
+              xOffset = 210;
+              yOffset = 40;
+              scaleFactor = 0.9;
+              isDrawerOpen=true;
+            });
+          },
           icon: Icon(EvaIcons.menu2Outline),
           iconSize: 30,
         ),
+
         actions: [
+
+          //Search Button
+
           IconButton(
             onPressed: (){},
             icon: Icon(EvaIcons.searchOutline),
             iconSize: 30,
             color: Colors.black87,
           ),
+
+          //Cart Button
+
           IconButton(
-            onPressed: (){},
+            onPressed: (){
+              Navigator.of(context).pushNamed('/cartpage');
+            },
             icon: Icon(EvaIcons.shoppingBagOutline),
             iconSize: 30,
             color: Colors.black87,
           )
         ],
       ),
-      body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 10),
-              SizedBox(
-                height: 70,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
+
+      //DrawerScreen and Container(Animated) Stack
+
+      body: Stack(
+        children: [
+          DrawerScreen(),
+          AnimatedContainer(
+          duration: Duration(milliseconds: 250),
+          transform: Matrix4.translationValues(xOffset, yOffset, 0)
+            ..scale(scaleFactor)..rotateY(isDrawerOpen? -0.5:0),
+
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(isDrawerOpen?40:0.0),
+              boxShadow: [
+                BoxShadow(
+
+                  //Body Container Shadow
+
+                  color: Color(0xFFff6f00),
+                  spreadRadius: 10,
+                  blurRadius: 70,
+                )
+              ]
+            ),
+
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 10),
+
+                //Categories List Icons
+
+                SizedBox(
+                  height: 67,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    children: [
+
+                      CategoryItem(
+                        icon: EvaIcons.giftOutline,
+                        size: 70,
+                        margin: EdgeInsets.only(left: 10),
+                        padding: EdgeInsets.all(10),
+                        backgroundColor: Color(0xFFff6f00),),
+
+                      CategoryItem(
+                        icon: EvaIcons.headphones,
+                        size: 70,
+                        margin: EdgeInsets.only(left: 10),
+                        padding: EdgeInsets.all(10),
+                        backgroundColor: Color(0xFFffc107),),
+
+                      CategoryItem(
+                        icon: EvaIcons.bookOpenOutline,
+                        size: 70,
+                        margin: EdgeInsets.only(left: 10),
+                        padding: EdgeInsets.all(10),
+                        backgroundColor: Color(0xFFff6f00),),
+
+                      CategoryItem(
+                        icon: EvaIcons.filmOutline,
+                        size: 70,
+                        margin: EdgeInsets.only(left: 10),
+                        padding: EdgeInsets.all(10),
+                        backgroundColor: Color(0xFFffc107),),
+
+                      CategoryItem(
+                        icon: EvaIcons.monitorOutline,
+                        size: 70,
+                        margin: EdgeInsets.only(left: 10),
+                        padding: EdgeInsets.all(10),
+                        backgroundColor: Color(0xFFff6f00),),
+
+                      CategoryItem(
+                        icon: EvaIcons.printerOutline,
+                        size: 70,
+                        margin: EdgeInsets.only(left: 10),
+                        padding: EdgeInsets.all(10),
+                        backgroundColor: Color(0xFFffc107),),
+
+                      CategoryItem(
+                        icon: EvaIcons.briefcaseOutline,
+                        size: 70,
+                        margin: EdgeInsets.only(left: 10),
+                        padding: EdgeInsets.all(10),
+                        backgroundColor: Color(0xFFff6f00),),
+
+                      SizedBox(width: 10),
+                    ],
+                  ),
+                ),
+
+                SizedBox(height: 15),
+
+                //ad banner 1 (Static)
+
+                Padding(
+                  padding: const EdgeInsets.only(right: 30, left: 30),
+                  child: AspectRatio(
+                    aspectRatio: 16/5,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("Assets/banner8.jpg"),
+                            fit: BoxFit.cover
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
+                //ad banner1 (Static)/end
+
+                SizedBox(height: 10,),
+
+                //bannerAdSlider2 (Carousel)
+
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: SizedBox(
+                      height: 200.0,
+                      width: double.infinity,
+                      child: Carousel(
+                        images: [
+                          AssetImage("Assets/banner1.jpg"),
+                          AssetImage("Assets/banner2.jpg"),
+                          AssetImage("Assets/banner3.jpg"),
+                          AssetImage("Assets/banner4.jpg"),
+                          AssetImage("Assets/banner5.jpg"),
+                          AssetImage("Assets/banner6.jpg"),
+                        ],
+                        dotSize: 7.0,
+                        dotSpacing: 20.0,
+                        dotColor: Color(0xFFffc107),
+                        //dotBgColor: Color(0xFFffc107).withOpacity(0.5),
+                        indicatorBgPadding: 5.0,
+                        borderRadius: true,
+                        radius: Radius.circular(20.0),
+                        dotIncreaseSize: 1.5,
+                      )
+                  ),
+                ),
+
+                //bannerAdSlider2 (Carousel)/end
+
+                SizedBox(height: 10),
+
+                //ad banner3 (Static)
+
+                Padding(
+                  padding: const EdgeInsets.only(right: 30, left: 30),
+                  child: AspectRatio(
+                    aspectRatio: 16/5,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("Assets/banner7.jpg"),
+                            fit: BoxFit.cover
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
+                //ad banner3 (Static)/end
+
+                SizedBox(height: 20),
+
+                //ProductGrid
+
+                GridView.count(
+                  physics: ClampingScrollPhysics(),
+                  crossAxisCount: 2,
                   shrinkWrap: true,
-                  children: [
-
-                    CategoryItem(
-                      icon: EvaIcons.giftOutline,
-                      size: 70,
-                      margin: EdgeInsets.only(left: 10),
-                      padding: EdgeInsets.all(10),
-                      backgroundColor: Color(0xFFff6f00),),
-
-                    CategoryItem(
-                      icon: EvaIcons.headphones,
-                      size: 70,
-                      margin: EdgeInsets.only(left: 10),
-                      padding: EdgeInsets.all(10),
-                      backgroundColor: Color(0xFFffc107),),
-
-                    CategoryItem(
-                      icon: EvaIcons.bookOpenOutline,
-                      size: 70,
-                      margin: EdgeInsets.only(left: 10),
-                      padding: EdgeInsets.all(10),
-                      backgroundColor: Color(0xFFff6f00),),
-
-                    CategoryItem(
-                      icon: EvaIcons.filmOutline,
-                      size: 70,
-                      margin: EdgeInsets.only(left: 10),
-                      padding: EdgeInsets.all(10),
-                      backgroundColor: Color(0xFFffc107),),
-
-                    CategoryItem(
-                      icon: EvaIcons.monitorOutline,
-                      size: 70,
-                      margin: EdgeInsets.only(left: 10),
-                      padding: EdgeInsets.all(10),
-                      backgroundColor: Color(0xFFff6f00),),
-
-                    CategoryItem(
-                      icon: EvaIcons.printerOutline,
-                      size: 70,
-                      margin: EdgeInsets.only(left: 10),
-                      padding: EdgeInsets.all(10),
-                      backgroundColor: Color(0xFFffc107),),
-
-                    CategoryItem(
-                      icon: EvaIcons.briefcaseOutline,
-                      size: 70,
-                      margin: EdgeInsets.only(left: 10),
-                      padding: EdgeInsets.all(10),
-                      backgroundColor: Color(0xFFff6f00),),
-
-                    SizedBox(width: 10),
-                  ],
-                ),
-              ),
-
-              SizedBox(height: 10),
-
-              //ad banner 1
-
-              Padding(
-                padding: const EdgeInsets.only(right: 30, left: 30),
-                child: AspectRatio(
-                  aspectRatio: 16/5,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("Assets/banner8.jpg"),
-                          fit: BoxFit.cover
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
-              //ad banner1
-
-              SizedBox(height: 10,),
-
-              //bannerAdSlider2
-
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: SizedBox(
-                    height: 200.0,
-                    width: double.infinity,
-                    child: Carousel(
-                      images: [
-                        AssetImage("Assets/banner1.jpg"),
-                        AssetImage("Assets/banner2.jpg"),
-                        AssetImage("Assets/banner3.jpg"),
-                        AssetImage("Assets/banner4.jpg"),
-                        AssetImage("Assets/banner5.jpg"),
-                        AssetImage("Assets/banner6.jpg"),
-                      ],
-                      dotSize: 7.0,
-                      dotSpacing: 20.0,
-                      dotColor: Color(0xFFffc107),
-                      //dotBgColor: Color(0xFFffc107).withOpacity(0.5),
-                      indicatorBgPadding: 5.0,
-                      borderRadius: true,
-                      radius: Radius.circular(20.0),
-                      dotIncreaseSize: 1.5,
-                    )
-                ),
-              ),
-
-              //bannerAdSlider2
-
-              SizedBox(height: 10),
-
-              //ad banner3
-
-              Padding(
-                padding: const EdgeInsets.only(right: 30, left: 30),
-                child: AspectRatio(
-                  aspectRatio: 16/5,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("Assets/banner7.jpg"),
-                          fit: BoxFit.cover
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
-              //ad banner3
-
-              SizedBox(height: 20),
-
-              //ProductGrid
-
-              GridView.count(
-                physics: ClampingScrollPhysics(),
-                crossAxisCount: 2,
-                shrinkWrap: true,
-                childAspectRatio: 1 / 1.25,
-                children: products.map((product) {
-                  return Stack(
-                    children: <Widget>[
-                      Container(
-                        child: Column(
-                          children: <Widget>[
-                            Hero(
-                              tag: product.image,
-                              child: AspectRatio(
-                                aspectRatio: 1 / 1,
-                                child: Image(
-                                  image: AssetImage(product.image),
+                  childAspectRatio: 1 / 1.25,
+                  children: products.map((product) {
+                    return Stack(
+                      children: <Widget>[
+                        Container(
+                          child: Column(
+                            children: <Widget>[
+                              Hero(
+                                tag: product.image,
+                                child: AspectRatio(
+                                  aspectRatio: 1 / 1,
+                                  child: Image(
+                                    image: AssetImage(product.image),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Text(
-                              product.productName,
-                            ),
-                            Text(
-                              "\₹${product.price}",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w700,
-                                color: Color(0xFFff6f00),
+                              Text(
+                                product.productName,
                               ),
-                            ),
-                          ],
+                              Text(
+                                "\₹${product.price}",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700,
+                                  color: Color(0xFFff6f00),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ProductPage(
-                                    product: product,
-                                  ),
-                                ));
-                          },
-                        ),
-                      )
-                    ],
-                  );
-                }).toList(),
-              ),
-            ],
+                        Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ProductPage(
+                                      product: product,
+                                    ),
+                                  ));
+                            },
+                          ),
+                        )
+                      ],
+                    );
+                  }).toList(),
+                ),
+              ],
+            ),
           ),
         ),
+      ],
       ),
     );
   }
