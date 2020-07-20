@@ -128,10 +128,10 @@ class _SignupPageState extends State<SignupPage> {
                         child:
                         Center(
                           child: Text('Go Back',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Montserrat',
-                                  color: Colors.black.withOpacity(0.7)),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Montserrat',
+                                color: Colors.black.withOpacity(0.7)),
                           ),
                         ),
                       ),

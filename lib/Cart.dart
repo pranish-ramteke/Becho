@@ -61,8 +61,8 @@ class _CartPageState extends State<CartPage> {
                         fontSize: 30.0,
                         fontWeight: FontWeight.bold),
                   )),
-              
-              
+
+
               Positioned(
                 top: 150.0,
                 child: Column(

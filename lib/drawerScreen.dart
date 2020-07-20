@@ -12,33 +12,112 @@ class _DrawerScreenState extends State<DrawerScreen> {
       decoration: BoxDecoration(
         color: Color(0xFFfccf3e),
       ),
-      padding: EdgeInsets.only(top:50,bottom: 70,left: 10),
+      padding: EdgeInsets.only(top:50,bottom: 70,left: 0),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              CircleAvatar(backgroundColor: Color(0xFFff6f00),),
-              SizedBox(width: 10,),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Pranish Ramteke',style: TextStyle(color: Color(0xFFff6f00),fontWeight: FontWeight.bold),),
-                  Text('Active Status',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold))
-                ],
-              )
+              Padding(
+                padding: const EdgeInsets.fromLTRB(45, 5, 0, 10),
+                child: CircleAvatar(
+                  backgroundImage: AssetImage('Assets/profile_user.jpg'),
+                  radius: 50,
+                ),
+              ),
             ],
           ),
 
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text('Pranish Ramteke', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),)
+              ],
+            ),
+          ),
+
+          SizedBox(height: 20),
+          Divider(thickness: 1, color: Color(0xFFff6f00)),
+          SizedBox(height: 10),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: Row(
+              children: [
+                Text('Your Orders', style: TextStyle(
+                  color:Color(0xFFff6f00),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),),
+              ],
+            ),
+          ),
+
+          SizedBox(height: 15.0),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: Row(
+              children: [
+                Text("Today's offers", style: TextStyle(
+                  color:Color(0xFFff6f00),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15
+                ),),
+              ],
+            ),
+          ),
+
+          SizedBox(height: 10),
+          Divider(thickness: 1, color: Color(0xFFff6f00)),
+
           Row(
             children: [
-              Icon(Icons.settings,color: Colors.white,),
-              SizedBox(width: 10,),
-              Text('Settings',style:TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-              SizedBox(width: 10,),
-              Container(width: 2,height: 20,color: Colors.white,),
-              SizedBox(width: 10,),
-              Text('Log out',style:TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 10, 0, 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Fashion', style: TextStyle(fontSize: 15)),
+                    SizedBox(height: 10),
+                    Text('Electronics', style: TextStyle(fontSize: 15)),
+                    SizedBox(height: 10),
+                    Text('Books', style: TextStyle(fontSize: 15)),
+                    SizedBox(height: 10),
+                    Text('Mobiles', style: TextStyle(fontSize: 15)),
+                    SizedBox(height: 10),
+                    Text('Accessories', style: TextStyle(fontSize: 15)),
+                    SizedBox(height: 10),
+                    Text('Laptops', style: TextStyle(fontSize: 15)),
+                    SizedBox(height: 10),
+                    Text('SmartPhones', style: TextStyle(fontSize: 15)),
+                    SizedBox(height: 10),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          Divider(thickness: 1, color: Color(0xFFff6f00)),
+          SizedBox(height: 15),
+
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 0, 0, 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Your Account', style: TextStyle(fontSize: 15, color: Color(0xFFff6f00), fontWeight: FontWeight.bold)),
+                    SizedBox(height: 10),
+                    Text('WishList', style: TextStyle(fontSize: 15, color: Color(0xFFff6f00), fontWeight: FontWeight.bold)),
+                    SizedBox(height: 10),
+                    Text('Notifications', style: TextStyle(fontSize: 15, color: Color(0xFFff6f00), fontWeight: FontWeight.bold)),
+                  ],
+                ),
+              ),
             ],
           ),
         ],

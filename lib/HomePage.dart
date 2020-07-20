@@ -1,6 +1,7 @@
 import 'package:becho/Module/products.dart';
 import 'package:becho/Widgets/Categoryitem.dart';
 import 'package:becho/drawerScreen.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
 
   List bannerAdSlider = [
     "Assets/banner1.jpg",
@@ -200,6 +202,8 @@ class _HomePageState extends State<HomePage> {
         children: [
           DrawerScreen(),
           AnimatedContainer(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
           duration: Duration(milliseconds: 250),
           transform: Matrix4.translationValues(xOffset, yOffset, 0)
             ..scale(scaleFactor)..rotateY(isDrawerOpen? -0.5:0),
@@ -424,7 +428,37 @@ class _HomePageState extends State<HomePage> {
         ),
       ],
       ),
+
+      //Navigation Bar
+
+      bottomNavigationBar: CurvedNavigationBar(
+        color: Color(0xFFfccf3e),
+        backgroundColor: Colors.white,
+        height: 50,
+        items: [
+          Icon(EvaIcons.homeOutline, size: 30, color: Color(0xFFff6f00),),
+          Icon(EvaIcons.searchOutline, size: 30, color: Color(0xFFff6f00)),
+          Icon(EvaIcons.plus, size: 30, color: Color(0xFFff6f00)),
+          Icon(Icons.attach_money, size: 30, color: Color(0xFFff6f00)),
+        ],
+        onTap: (index){
+          if(index == 0){
+            Navigator.of(context).pushNamed('/signup');
+          }
+          if(index == 1){
+            Navigator.of(context).pushNamed('/signup');
+          }
+          if(index == 2){
+            Navigator.of(context).pushNamed('/signup');
+          }
+          if(index == 3){
+            Navigator.of(context).pushNamed('/signup');
+          }
+        },
+      ),
     );
   }
 }
+
+
 
