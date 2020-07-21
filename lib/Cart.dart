@@ -1,3 +1,5 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
 class CartPage extends StatefulWidget {
@@ -43,6 +45,13 @@ class _CartPageState extends State<CartPage> {
                 width: double.infinity,
               ),
               Container(
+                height: 50.0,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Color(0xFFffc107),
+                ),
+              ),
+              Container(
                 height: 250.0,
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -67,17 +76,17 @@ class _CartPageState extends State<CartPage> {
                 top: 150.0,
                 child: Column(
                   children: <Widget>[
-                    itemCard('Finn Navian-Sofa', 'gray', '248',
-                        'assets/otto5.jpg', true, 0),
-                    itemCard('Finn Navian-Sofa', 'gray', '248',
-                        'assets/anotherchair.jpg', true, 1),
-                    itemCard('Finn Navian-Sofa', 'gray', '248',
-                        'assets/chair.jpg', false, 2)
+                    itemCard('iPad Mini', 'gray', '248',
+                        'Assets/product1.jpg', true, 0),
+                    itemCard('iPad Pro', 'gray', '248',
+                        'Assets/product2.jpg', true, 1),
+                    itemCard('iPhone Max Pro', 'gray', '248',
+                        'Assets/product3.jpg', false, 2)
                   ],
                 ),
               ),
               Padding(
-                  padding: EdgeInsets.only(top: 600.0, bottom: 15.0),
+                  padding: EdgeInsets.only(top: 740.0, bottom: 15.0),
                   child: Container(
                       height: 50.0,
                       width: double.infinity,
@@ -91,8 +100,11 @@ class _CartPageState extends State<CartPage> {
                             padding: const EdgeInsets.all(8.0),
                             child: RaisedButton(
                               onPressed: () {},
-                              elevation: 0.5,
-                              color: Colors.red,
+                              elevation: 3,
+                              color: Color(0xFFff6f00),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
+                              ),
                               child: Center(
                                 child: Text(
                                   'Pay Now',
@@ -107,68 +119,31 @@ class _CartPageState extends State<CartPage> {
           ])
         ])
       ]),
-      bottomNavigationBar: Material(
-          elevation: 7.0,
-          color: Colors.white,
-          child: Container(
-              height: 50.0,
-              width: MediaQuery.of(context).size.width,
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          height: 50.0,
-                          width: 50.0,
-                          color: Colors.white,
-                          child: Icon(
-                            Icons.shopping_basket,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          height: 50.0,
-                          width: 50.0,
-                          color: Colors.white,
-                          child: Icon(
-                            Icons.account_box,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          height: 50.0,
-                          width: 50.0,
-                          color: Colors.white,
-                          child: Icon(
-                            Icons.shopping_cart,
-                            color: Colors.yellow,
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          height: 50.0,
-                          width: 50.0,
-                          color: Colors.white,
-                          child: Icon(
-                            Icons.account_box,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ),
-                    ]),
-              ))),
+      bottomNavigationBar: CurvedNavigationBar(
+        color: Color(0xFFfccf3e),
+        backgroundColor: Colors.white,
+        height: 50,
+        items: [
+          Icon(EvaIcons.homeOutline, size: 30, color: Color(0xFFff6f00),),
+          Icon(EvaIcons.searchOutline, size: 30, color: Color(0xFFff6f00)),
+          Icon(EvaIcons.plus, size: 30, color: Color(0xFFff6f00)),
+          Icon(Icons.attach_money, size: 30, color: Color(0xFFff6f00)),
+        ],
+        onTap: (index){
+          if(index == 0){
+            Navigator.of(context).pushNamed('/homepage');
+          }
+          if(index == 1){
+            Navigator.of(context).pushNamed('/signup');
+          }
+          if(index == 2){
+            Navigator.of(context).pushNamed('/signup');
+          }
+          if(index == 3){
+            Navigator.of(context).pushNamed('/signup');
+          }
+        },
+      ),
     );
   }
 
@@ -180,17 +155,18 @@ class _CartPageState extends State<CartPage> {
         }
       },
       child: Padding(
-          padding: EdgeInsets.all(10.0),
+          padding: EdgeInsets.fromLTRB(20.0, 20, 20, 5),
           child: Material(
-              borderRadius: BorderRadius.circular(30.0),
-              elevation: 5.0,
+              borderRadius: BorderRadius.circular(40.0),
+              elevation: 20.0,
+              shadowColor: Color(0xFFff6f00),
               child: Container(
                   padding: EdgeInsets.only(left: 15.0, right: 10.0),
-                  width: MediaQuery.of(context).size.width - 20.0,
-                  height: 150.0,
+                  width: MediaQuery.of(context).size.width - 40.0,
+                  height: 140.0,
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(10.0)),
+                      borderRadius: BorderRadius.circular(40.0)),
                   child: Row(
                     children: <Widget>[
                       Column(
@@ -230,7 +206,7 @@ class _CartPageState extends State<CartPage> {
                                 image: AssetImage(imgPath),
                                 fit: BoxFit.contain)),
                       ),
-                      SizedBox(width: 4.0),
+                      SizedBox(width: 20.0),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -298,7 +274,10 @@ class _CartPageState extends State<CartPage> {
                         ],
                       )
                     ],
-                  )))),
+                  ),
+              ),
+          ),
+      ),
     );
   }
 }

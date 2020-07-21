@@ -443,7 +443,7 @@ class _HomePageState extends State<HomePage> {
         ],
         onTap: (index){
           if(index == 0){
-            Navigator.of(context).pushNamed('/signup');
+            Navigator.of(context).pushNamed('/homepage');
           }
           if(index == 1){
             Navigator.of(context).pushNamed('/signup');

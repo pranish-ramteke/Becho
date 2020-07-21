@@ -27,19 +27,19 @@ class _LoginState extends State<Login> {
               child: Stack(
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.fromLTRB(40.0, 130.0, 0.0, 0.0),
+                    padding: EdgeInsets.fromLTRB(40.0, 110.0, 0.0, 0.0),
                     child: Text('Hello',
                         style: TextStyle(
                             fontSize: 80.0, fontWeight: FontWeight.bold)),
                   ),
                   Container(
-                    padding: EdgeInsets.fromLTRB(40.0, 195.0, 0.0, 0.0),
+                    padding: EdgeInsets.fromLTRB(40.0, 175.0, 0.0, 0.0),
                     child: Text('There',
                         style: TextStyle(
                             fontSize: 80.0, fontWeight: FontWeight.bold)),
                   ),
                   Container(
-                    padding: EdgeInsets.fromLTRB(245.0, 195.0, 0.0, 0.0),
+                    padding: EdgeInsets.fromLTRB(245.0, 175.0, 0.0, 0.0),
                     child: Text('.',
                         style: TextStyle(
                             fontSize: 80.0,
@@ -50,7 +50,7 @@ class _LoginState extends State<Login> {
               ),
             ),
             Container(
-                padding: EdgeInsets.only(top: 35.0, left: 40.0, right: 40.0),
+                padding: EdgeInsets.only(top: 15.0, left: 40.0, right: 40.0),
                 child: Column(
                   children: <Widget>[
                     TextField(
